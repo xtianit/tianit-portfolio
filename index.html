@@ -11,8 +11,7 @@
                 extend: {
                     colors: {
                         dark: '#010308',
-                        card: '#080c14',
-                        cardHover: '#0f172a',
+                        card: '#0a101f',
                         primary: '#10b981', // Emerald 500
                         primaryHover: '#059669',
                         accent: '#3b82f6', // Royal Blue
@@ -37,9 +36,9 @@
             color: #f8fafc;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.07) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(59, 130, 246, 0.07) 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+                radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 85%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
         }
 
         /* Custom sleek scrollbar */
@@ -57,23 +56,67 @@
             background: #10b981; 
         }
 
+        /* Glassmorphism Navigation */
         .glass-nav {
-            background: rgba(1, 3, 8, 0.88);
+            background: rgba(1, 3, 8, 0.82);
             backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
+        /* Glassmorphism Cards */
         .glass-card {
-            background: rgba(10, 15, 26, 0.75);
+            background: rgba(13, 20, 35, 0.65);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .glass-card:hover {
+            background: rgba(18, 28, 48, 0.8);
             border-color: rgba(16, 185, 129, 0.5);
-            box-shadow: 0 30px 60px -12px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 35px 70px -15px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
             transform: translateY(-6px);
+        }
+
+        /* Glassmorphism Transparent Buttons */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            color: #f8fafc;
+        }
+
+        .glass-btn:hover {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 10px 40px -10px rgba(16, 185, 129, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            color: #10b981;
+        }
+
+        /* Primary Accent Glass Button */
+        .glass-btn-primary {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            color: #f8fafc;
+        }
+
+        .glass-btn-primary:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.35) 0%, rgba(59, 130, 246, 0.35) 100%);
+            border-color: rgba(16, 185, 129, 0.8);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            color: #ffffff;
         }
 
         .gradient-text {
@@ -84,9 +127,9 @@
 
         .glow-blob {
             position: absolute;
-            filter: blur(140px);
+            filter: blur(150px);
             z-index: 0;
-            opacity: 0.2;
+            opacity: 0.22;
             pointer-events: none;
             border-radius: 50%;
         }
@@ -110,11 +153,11 @@
         }
 
         .filter-btn.active {
-            background: #10b981;
-            color: #010308;
+            background: rgba(16, 185, 129, 0.25);
+            color: #10b981;
             border-color: #10b981;
             font-weight: 700;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -139,12 +182,12 @@
                     <a href="#skills" class="text-textMuted hover:text-primary transition-colors">Arsenal</a>
                     <a href="#projects" class="text-textMuted hover:text-primary transition-colors">Projects</a>
                     <a href="#experience" class="text-textMuted hover:text-primary transition-colors">Experience</a>
-                    <a href="#contact" class="bg-gradient-to-r from-primary to-accent text-slate-950 font-bold px-6 py-3 rounded-xl transition-all shadow-lg shadow-primary/30 hover:opacity-95 hover:scale-105">Let's Talk</a>
+                    <a href="#contact" class="glass-btn-primary font-bold px-6 py-2.5 rounded-xl">Let's Talk</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-textMuted hover:text-white focus:outline-none p-2">
+                    <button id="mobile-menu-btn" class="glass-btn p-2.5 rounded-xl text-textMuted hover:text-white focus:outline-none">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
@@ -152,13 +195,13 @@
         </div>
 
         <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-card/95 backdrop-blur-2xl border-b border-slate-800">
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-slate-800">
             <div class="px-4 pt-4 pb-6 space-y-3 flex flex-col">
                 <a href="#about" class="text-textMuted hover:text-white block px-4 py-2 rounded-xl text-base font-medium">About</a>
                 <a href="#skills" class="text-textMuted hover:text-white block px-4 py-2 rounded-xl text-base font-medium">Arsenal</a>
                 <a href="#projects" class="text-textMuted hover:text-white block px-4 py-2 rounded-xl text-base font-medium">Projects</a>
                 <a href="#experience" class="text-textMuted hover:text-white block px-4 py-2 rounded-xl text-base font-medium">Experience</a>
-                <a href="#contact" class="text-slate-950 font-bold block px-4 py-3 rounded-xl text-base bg-gradient-to-r from-primary to-accent mt-2 text-center shadow-lg">Let's Talk</a>
+                <a href="#contact" class="glass-btn-primary font-bold block px-4 py-3 rounded-xl text-base text-center mt-2">Let's Talk</a>
             </div>
         </div>
     </nav>
@@ -186,23 +229,23 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto reveal" style="transition-delay: 300ms;">
-                    <a href="#projects" class="bg-gradient-to-r from-primary via-accent to-purpleAccent text-slate-950 font-extrabold px-8 py-4 rounded-2xl transition-all shadow-xl shadow-primary/30 text-center flex items-center justify-center gap-2.5 group hover:scale-105">
+                    <a href="#projects" class="glass-btn-primary font-extrabold px-8 py-4 rounded-2xl text-center flex items-center justify-center gap-2.5 group">
                         <span>Explore My Work</span>
                         <i class="fas fa-arrow-right text-sm group-hover:translate-x-1.5 transition-transform"></i>
                     </a>
-                    <a href="#contact" class="glass-card hover:border-primary text-white font-semibold px-8 py-4 rounded-2xl transition-all text-center shadow-lg">
+                    <a href="#contact" class="glass-btn font-semibold px-8 py-4 rounded-2xl text-center">
                         Let's Collaborate
                     </a>
                 </div>
 
                 <div class="flex items-center gap-6 mt-12 text-xl text-textMuted reveal" style="transition-delay: 400ms;">
-                    <a href="https://github.com/xtianit" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center hover:text-primary hover:border-primary transition-all shadow-lg" title="GitHub">
+                    <a href="https://github.com/xtianit" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-2xl glass-btn flex items-center justify-center hover:text-primary transition-all" title="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/tianit/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center hover:text-[#0a66c2] hover:border-[#0a66c2] transition-all shadow-lg" title="LinkedIn">
+                    <a href="https://www.linkedin.com/in/tianit/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-2xl glass-btn flex items-center justify-center hover:text-[#0a66c2] transition-all" title="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="mailto:ohore4luv@yahoo.com" class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center hover:text-primary hover:border-primary transition-all shadow-lg" title="Email">
+                    <a href="mailto:ohore4luv@yahoo.com" class="w-12 h-12 rounded-2xl glass-btn flex items-center justify-center hover:text-primary transition-all" title="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
@@ -229,7 +272,7 @@
                         </div>
 
                         <!-- Interactive Terminal Box -->
-                        <div class="bg-slate-950 rounded-2xl p-4 font-mono text-xs text-slate-300 border border-slate-800 shadow-inner">
+                        <div class="bg-slate-950/80 backdrop-blur-md rounded-2xl p-4 font-mono text-xs text-slate-300 border border-slate-800 shadow-inner">
                             <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-800/80 text-slate-500 text-[10px]">
                                 <span class="flex items-center gap-1.5">
                                     <i class="fas fa-terminal text-primary"></i> interactive-terminal.sh
@@ -240,15 +283,22 @@
                                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
                                 </div>
                             </div>
-                            <div id="terminal-output" class="space-y-1 mb-3 text-[11px] leading-relaxed">
+                            <div id="terminal-output" class="space-y-1 mb-3 text-[11px] leading-relaxed max-h-36 overflow-y-auto">
                                 <p class="text-slate-400">$ ./load-profile.sh --senior</p>
                                 <p class="text-primary">✔ Status: 5+ Years Full-Stack Excellence</p>
                                 <p class="text-purple-400">✔ Core: React, Node.js, Python, PostgreSQL</p>
-                                <p class="text-emerald-400">✔ Ready for immediate deployment.</p>
+                                <p class="text-emerald-400">✔ Click quick commands below or type commands.</p>
+                            </div>
+                            <!-- Quick Command Buttons -->
+                            <div class="flex flex-wrap gap-1.5 mb-3 pt-2 border-t border-slate-900">
+                                <button onclick="runQuickCommand('skills')" class="glass-btn px-2.5 py-1 text-[10px] rounded-lg font-mono">skills</button>
+                                <button onclick="runQuickCommand('experience')" class="glass-btn px-2.5 py-1 text-[10px] rounded-lg font-mono">experience</button>
+                                <button onclick="runQuickCommand('hire')" class="glass-btn px-2.5 py-1 text-[10px] rounded-lg font-mono">hire</button>
+                                <button onclick="runQuickCommand('clear')" class="glass-btn px-2.5 py-1 text-[10px] rounded-lg font-mono text-red-400 hover:text-red-300">clear</button>
                             </div>
                             <div class="flex items-center gap-2 pt-2 border-t border-slate-900">
                                 <span class="text-primary">❯</span>
-                                <input type="text" id="terminal-input" placeholder="Type 'help', 'skills', or 'hire'..." class="bg-transparent border-none outline-none text-white text-xs w-full font-mono" onkeypress="handleTerminalCommand(event)">
+                                <input type="text" id="terminal-input" placeholder="Type a command..." class="bg-transparent border-none outline-none text-white text-xs w-full font-mono" onkeypress="handleTerminalCommand(event)">
                             </div>
                         </div>
                     </div>
@@ -259,7 +309,7 @@
     </section>
 
     <!-- Metrics Bar -->
-    <div class="border-y border-slate-800/80 bg-card/60 backdrop-blur-2xl py-10 relative z-20 shadow-2xl">
+    <div class="border-y border-slate-800/80 bg-slate-950/60 backdrop-blur-2xl py-10 relative z-20 shadow-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div class="reveal">
                 <span class="block text-3xl md:text-5xl font-black text-primary mb-1">5+</span>
@@ -309,7 +359,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-28 bg-card/30 border-y border-slate-900">
+    <section id="skills" class="py-28 bg-slate-950/30 border-y border-slate-900">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center gap-4 mb-16 reveal">
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">02. Technical Arsenal</h2>
@@ -326,11 +376,11 @@
                         <h3 class="text-xl font-bold text-white">Languages</h3>
                     </div>
                     <div class="flex flex-wrap gap-2.5">
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">JavaScript</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Python</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">C</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">C++</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">HTML5/CSS3</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">JavaScript</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Python</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">C</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">C++</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">HTML5/CSS3</span>
                     </div>
                 </div>
 
@@ -343,11 +393,11 @@
                         <h3 class="text-xl font-bold text-white">Frontend</h3>
                     </div>
                     <div class="flex flex-wrap gap-2.5">
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">React</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Next.js</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">AngularJS</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Tailwind CSS</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Vite</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">React</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Next.js</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">AngularJS</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Tailwind CSS</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Vite</span>
                     </div>
                 </div>
 
@@ -360,12 +410,12 @@
                         <h3 class="text-xl font-bold text-white">Backend & APIs</h3>
                     </div>
                     <div class="flex flex-wrap gap-2.5">
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Node.js</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Express.js</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Flask</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Django</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">RESTful APIs</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">WebSockets</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Node.js</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Express.js</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Flask</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Django</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">RESTful APIs</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">WebSockets</span>
                     </div>
                 </div>
 
@@ -378,12 +428,12 @@
                         <h3 class="text-xl font-bold text-white">Databases & ORMs</h3>
                     </div>
                     <div class="flex flex-wrap gap-2.5">
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">PostgreSQL</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">MongoDB</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">MySQL</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Redis</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Supabase</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Prisma</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">PostgreSQL</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">MongoDB</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">MySQL</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Redis</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Supabase</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Prisma</span>
                     </div>
                 </div>
 
@@ -396,11 +446,11 @@
                         <h3 class="text-xl font-bold text-white">Tools & DevOps</h3>
                     </div>
                     <div class="flex flex-wrap gap-2.5">
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Git & GitHub</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Docker</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Vercel</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">Railway & Render</span>
-                        <span class="px-3.5 py-2 bg-slate-900 border border-slate-800 text-textMuted text-xs font-mono rounded-xl">VS Code</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Git & GitHub</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Docker</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Vercel</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">Railway & Render</span>
+                        <span class="px-3.5 py-2 glass-btn text-xs font-mono rounded-xl">VS Code</span>
                     </div>
                 </div>
             </div>
@@ -418,126 +468,138 @@
                 
                 <!-- Filter Buttons -->
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs font-mono border border-slate-800 bg-slate-900 text-textMuted hover:border-primary transition-all">All</button>
-                    <button onclick="filterProjects('fullstack')" class="filter-btn px-4 py-2 rounded-xl text-xs font-mono border border-slate-800 bg-slate-900 text-textMuted hover:border-primary transition-all">Full-Stack</button>
-                    <button onclick="filterProjects('backend')" class="filter-btn px-4 py-2 rounded-xl text-xs font-mono border border-slate-800 bg-slate-900 text-textMuted hover:border-primary transition-all">Backend</button>
-                    <button onclick="filterProjects('saas')" class="filter-btn px-4 py-2 rounded-xl text-xs font-mono border border-slate-800 bg-slate-900 text-textMuted hover:border-primary transition-all">SaaS & Architecture</button>
+                    <button onclick="filterProjects('all')" class="filter-btn glass-btn active px-4 py-2 rounded-xl text-xs font-mono">All</button>
+                    <button onclick="filterProjects('fullstack')" class="filter-btn glass-btn px-4 py-2 rounded-xl text-xs font-mono">Full-Stack</button>
+                    <button onclick="filterProjects('backend')" class="filter-btn glass-btn px-4 py-2 rounded-xl text-xs font-mono">Backend</button>
+                    <button onclick="filterProjects('saas')" class="filter-btn glass-btn px-4 py-2 rounded-xl text-xs font-mono">SaaS & Architecture</button>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
                 
                 <!-- Project 1 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8" data-category="fullstack">
+                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8 cursor-pointer" data-category="fullstack" onclick="openProjectModal('Cybersecurity Certification Platform', 'Engineered a comprehensive training and certification platform featuring interactive learning modules, secure user authentication, and automated payment webhook subscriptions.', ['Next.js', 'Node.js', 'Express', 'PostgreSQL'])">
                     <div class="flex justify-between items-start mb-6">
                         <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary text-2xl shadow-md">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <span class="text-xs px-3.5 py-1.5 bg-primary/10 text-primary border border-primary/25 rounded-full font-mono uppercase tracking-wider">Full-Stack</span>
+                        <span class="text-xs px-3.5 py-1.5 glass-btn text-primary rounded-full font-mono uppercase tracking-wider">Full-Stack</span>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">Cybersecurity Certification Platform</h3>
                     <p class="text-textMuted text-sm mb-8 flex-grow leading-relaxed">
                         Engineered a comprehensive training and certification platform featuring interactive learning modules, secure user authentication, and automated payment webhook subscriptions.
                     </p>
-                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800 mt-auto">
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">Next.js</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">Node.js</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">Express</span>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 mt-auto items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">Next.js</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">Node.js</span>
+                        </div>
+                        <span class="text-xs text-primary font-mono flex items-center gap-1">Details <i class="fas fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8" data-category="backend" style="transition-delay: 100ms;">
+                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8 cursor-pointer" data-category="backend" style="transition-delay: 100ms;" onclick="openProjectModal('InternBridge Job Placement', 'Developed a robust online job and internship marketplace connecting students with employers. Designed secure relational database schemas and high-throughput RESTful endpoints.', ['Python', 'Flask', 'SQLAlchemy'])">
                     <div class="flex justify-between items-start mb-6">
                         <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary text-2xl shadow-md">
                             <i class="fas fa-briefcase"></i>
                         </div>
-                        <span class="text-xs px-3.5 py-1.5 bg-primary/10 text-primary border border-primary/25 rounded-full font-mono uppercase tracking-wider">Backend</span>
+                        <span class="text-xs px-3.5 py-1.5 glass-btn text-primary rounded-full font-mono uppercase tracking-wider">Backend</span>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">InternBridge Job Placement</h3>
                     <p class="text-textMuted text-sm mb-8 flex-grow leading-relaxed">
                         Developed a robust online job and internship marketplace connecting students with employers. Designed secure relational database schemas and high-throughput RESTful endpoints.
                     </p>
-                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800 mt-auto">
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">Python</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">Flask</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">SQLAlchemy</span>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 mt-auto items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">Python</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">Flask</span>
+                        </div>
+                        <span class="text-xs text-primary font-mono flex items-center gap-1">Details <i class="fas fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8" data-category="saas" style="transition-delay: 200ms;">
+                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8 cursor-pointer" data-category="saas" style="transition-delay: 200ms;" onclick="openProjectModal('Pharmaceutical Mgmt SaaS', 'Architected a multi-tenant SaaS application tailored for pharmaceutical inventory tracking, multi-branch operations, and real-time stock alert workflows.', ['React', 'Express', 'MongoDB'])">
                     <div class="flex justify-between items-start mb-6">
                         <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary text-2xl shadow-md">
                             <i class="fas fa-pills"></i>
                         </div>
-                        <span class="text-xs px-3.5 py-1.5 bg-primary/10 text-primary border border-primary/25 rounded-full font-mono uppercase tracking-wider">SaaS</span>
+                        <span class="text-xs px-3.5 py-1.5 glass-btn text-primary rounded-full font-mono uppercase tracking-wider">SaaS</span>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">Pharmaceutical Mgmt SaaS</h3>
                     <p class="text-textMuted text-sm mb-8 flex-grow leading-relaxed">
                         Architected a multi-tenant SaaS application tailored for pharmaceutical inventory tracking, multi-branch operations, and real-time stock alert workflows.
                     </p>
-                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800 mt-auto">
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">React</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">Express</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">MongoDB</span>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 mt-auto items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">React</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">Express</span>
+                        </div>
+                        <span class="text-xs text-primary font-mono flex items-center gap-1">Details <i class="fas fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8" data-category="saas">
+                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8 cursor-pointer" data-category="saas" onclick="openProjectModal('Transport Logistics System', 'Designed backend data flow and system blueprints for a high-performance logistics manager. Leveraged Django, PostgreSQL, Redis, and WebSockets for real-time tracking updates.', ['Django', 'PostgreSQL', 'WebSockets', 'Redis'])">
                     <div class="flex justify-between items-start mb-6">
                         <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary text-2xl shadow-md">
                             <i class="fas fa-truck"></i>
                         </div>
-                        <span class="text-xs px-3.5 py-1.5 bg-primary/10 text-primary border border-primary/25 rounded-full font-mono uppercase tracking-wider">Architecture</span>
+                        <span class="text-xs px-3.5 py-1.5 glass-btn text-primary rounded-full font-mono uppercase tracking-wider">Architecture</span>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">Transport Logistics System</h3>
                     <p class="text-textMuted text-sm mb-8 flex-grow leading-relaxed">
                         Designed backend data flow and system blueprints for a high-performance logistics manager. Leveraged Django, PostgreSQL, Redis, and WebSockets for real-time tracking updates.
                     </p>
-                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800 mt-auto">
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">Django</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">PostgreSQL</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">WebSockets</span>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 mt-auto items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">Django</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">PostgreSQL</span>
+                        </div>
+                        <span class="text-xs text-primary font-mono flex items-center gap-1">Details <i class="fas fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8" data-category="fullstack" style="transition-delay: 100ms;">
+                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8 cursor-pointer" data-category="fullstack" style="transition-delay: 100ms;" onclick="openProjectModal('Role-Based Inventory Tracker', 'Constructed an enterprise warehouse inventory management system featuring strict role-based access control (RBAC), audit logs, and incoming/outgoing shipment tracking.', ['Node.js', 'Express', 'PostgreSQL'])">
                     <div class="flex justify-between items-start mb-6">
                         <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary text-2xl shadow-md">
                             <i class="fas fa-warehouse"></i>
                         </div>
-                        <span class="text-xs px-3.5 py-1.5 bg-primary/10 text-primary border border-primary/25 rounded-full font-mono uppercase tracking-wider">Full-Stack</span>
+                        <span class="text-xs px-3.5 py-1.5 glass-btn text-primary rounded-full font-mono uppercase tracking-wider">Full-Stack</span>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">Role-Based Inventory Tracker</h3>
                     <p class="text-textMuted text-sm mb-8 flex-grow leading-relaxed">
                         Constructed an enterprise warehouse inventory management system featuring strict role-based access control (RBAC), audit logs, and incoming/outgoing shipment tracking.
                     </p>
-                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800 mt-auto">
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">Node.js</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">Express</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">PostgreSQL</span>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 mt-auto items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">Node.js</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">PostgreSQL</span>
+                        </div>
+                        <span class="text-xs text-primary font-mono flex items-center gap-1">Details <i class="fas fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8" data-category="fullstack" style="transition-delay: 200ms;">
+                <div class="project-card glass-card rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full reveal p-8 cursor-pointer" data-category="fullstack" style="transition-delay: 200ms;" onclick="openProjectModal('Swanlake Machinery Ltd.', 'Designed and developed a sleek interactive web catalog for a heavy equipment leasing corporation, implementing optimized responsive UI components to drive client conversion.', ['JavaScript', 'Tailwind CSS', 'UI/UX'])">
                     <div class="flex justify-between items-start mb-6">
                         <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center text-primary text-2xl shadow-md">
                             <i class="fas fa-tractor"></i>
                         </div>
-                        <span class="text-xs px-3.5 py-1.5 bg-primary/10 text-primary border border-primary/25 rounded-full font-mono uppercase tracking-wider">Frontend</span>
+                        <span class="text-xs px-3.5 py-1.5 glass-btn text-primary rounded-full font-mono uppercase tracking-wider">Frontend</span>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-3">Swanlake Machinery Ltd.</h3>
                     <p class="text-textMuted text-sm mb-8 flex-grow leading-relaxed">
                         Designed and developed a sleek interactive web catalog for a heavy equipment leasing corporation, implementing optimized responsive UI components to drive client conversion.
                     </p>
-                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800 mt-auto">
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">JavaScript</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">Tailwind CSS</span>
-                        <span class="text-xs font-mono px-3 py-1 rounded-xl bg-slate-900 text-slate-400 border border-slate-800">UI/UX</span>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 mt-auto items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">JavaScript</span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-xl glass-btn text-slate-300">Tailwind CSS</span>
+                        </div>
+                        <span class="text-xs text-primary font-mono flex items-center gap-1">Details <i class="fas fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
@@ -545,8 +607,30 @@
         </div>
     </section>
 
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+        <div class="glass-card max-w-lg w-full rounded-3xl p-8 relative border border-primary/40 shadow-2xl">
+            <button onclick="closeProjectModal()" class="absolute top-6 right-6 w-10 h-10 rounded-xl glass-btn flex items-center justify-center text-textMuted hover:text-white">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary text-xl mb-6">
+                <i class="fas fa-code"></i>
+            </div>
+            <h3 id="modal-title" class="text-2xl font-bold text-white mb-3"></h3>
+            <p id="modal-desc" class="text-textMuted text-sm mb-6 leading-relaxed"></p>
+            <div class="mb-8">
+                <p class="text-xs font-mono text-primary uppercase mb-2">Technologies Used:</p>
+                <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+            </div>
+            <div class="flex gap-4">
+                <a href="#contact" onclick="closeProjectModal()" class="glass-btn-primary flex-1 py-3.5 rounded-xl font-bold text-center text-sm">Inquire About This Project</a>
+                <button onclick="closeProjectModal()" class="glass-btn px-6 py-3.5 rounded-xl text-sm font-semibold">Close</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Experience & Education Section -->
-    <section id="experience" class="py-28 bg-card/30 border-t border-slate-900">
+    <section id="experience" class="py-28 bg-slate-950/30 border-t border-slate-900">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="grid md:grid-cols-2 gap-16">
@@ -625,18 +709,18 @@
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-mono text-textMuted uppercase mb-1">Your Name</label>
-                            <input type="text" required placeholder="Recruiter / Hiring Manager" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-primary transition-colors">
+                            <input type="text" required placeholder="Recruiter / Hiring Manager" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-primary transition-colors">
                         </div>
                         <div>
                             <label class="block text-xs font-mono text-textMuted uppercase mb-1">Your Email</label>
-                            <input type="email" required placeholder="name@company.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-primary transition-colors">
+                            <input type="email" required placeholder="name@company.com" class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-primary transition-colors">
                         </div>
                     </div>
                     <div>
                         <label class="block text-xs font-mono text-textMuted uppercase mb-1">Message</label>
-                        <textarea rows="4" required placeholder="We have an exciting remote role for you..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-primary transition-colors"></textarea>
+                        <textarea rows="4" required placeholder="We have an exciting remote role for you..." class="w-full bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-primary transition-colors"></textarea>
                     </div>
-                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-primary to-accent text-slate-950 font-extrabold rounded-xl transition-all shadow-lg shadow-primary/25 hover:opacity-95 text-center">
+                    <button type="submit" class="w-full py-4 glass-btn-primary font-extrabold rounded-xl text-center">
                         Send Message to Christian
                     </button>
                 </form>
@@ -662,8 +746,8 @@
             </div>
             
             <div class="flex justify-center gap-6 text-xl reveal" style="transition-delay: 400ms;">
-                <a href="https://github.com/xtianit" target="_blank" class="w-14 h-14 rounded-2xl glass-card flex items-center justify-center text-textMuted hover:text-white hover:border-primary transition-all shadow-lg" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/tianit/" target="_blank" class="w-14 h-14 rounded-2xl glass-card flex items-center justify-center text-textMuted hover:text-[#0a66c2] hover:border-[#0a66c2] transition-all shadow-lg" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/xtianit" target="_blank" class="w-14 h-14 rounded-2xl glass-btn flex items-center justify-center text-textMuted hover:text-white transition-all shadow-lg" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/tianit/" target="_blank" class="w-14 h-14 rounded-2xl glass-btn flex items-center justify-center text-textMuted hover:text-[#0a66c2] transition-all shadow-lg" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </section>
@@ -710,34 +794,64 @@
             });
         }
 
-        // Interactive Terminal Command Execution
+        // Project Detail Modal Logic
+        function openProjectModal(title, desc, tags) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-desc').textContent = desc;
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = '';
+            tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'text-xs font-mono px-3 py-1.5 rounded-xl glass-btn text-primary';
+                span.textContent = tag;
+                tagsContainer.appendChild(span);
+            });
+            document.getElementById('project-modal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        // Execute terminal command logic
+        function processCommand(cmdText) {
+            const output = document.getElementById('terminal-output');
+            let response = `<p class="text-slate-400">$ ${cmdText}</p>`;
+            const cmd = cmdText.trim().toLowerCase();
+
+            if (cmd === 'help') {
+                response += `<p class="text-primary">Available commands: skills, experience, hire, clear</p>`;
+            } else if (cmd === 'skills') {
+                response += `<p class="text-purple-400">Stack: React, Next.js, Node.js, Express, Python, Flask, Django, PostgreSQL, MongoDB, Redis, Docker</p>`;
+            } else if (cmd === 'experience') {
+                response += `<p class="text-emerald-400">5+ Years Full-Stack Development & Web Development Instructor (Remote/Contract)</p>`;
+            } else if (cmd === 'hire') {
+                response += `<p class="text-yellow-400 font-bold">Awesome! Reach out directly via email at ohore4luv@yahoo.com or call 08078131524.</p>`;
+            } else if (cmd === 'clear') {
+                output.innerHTML = `<p class="text-slate-400">$ terminal cleared.</p>`;
+                return;
+            } else if (cmd !== '') {
+                response += `<p class="text-red-400">command not found: ${cmdText}. Type 'help' for options.</p>`;
+            }
+
+            output.innerHTML += response;
+            output.scrollTop = output.scrollHeight;
+        }
+
+        // Quick command runner buttons
+        function runQuickCommand(cmd) {
+            processCommand(cmd);
+        }
+
+        // Terminal text input handler
         function handleTerminalCommand(event) {
             if (event.key === 'Enter') {
                 const input = document.getElementById('terminal-input');
-                const output = document.getElementById('terminal-output');
-                const cmd = input.value.trim().toLowerCase();
-
-                let response = `<p class="text-slate-400">$ ${input.value}</p>`;
-                
-                if (cmd === 'help') {
-                    response += `<p class="text-primary">Available commands: skills, experience, hire, clear</p>`;
-                } else if (cmd === 'skills') {
-                    response += `<p class="text-purple-400">Stack: React, Next.js, Node.js, Express, Python, Flask, Django, PostgreSQL, MongoDB, Redis, Docker</p>`;
-                } else if (cmd === 'experience') {
-                    response += `<p class="text-emerald-400">5+ Years Full-Stack Development & Web Development Instructor (Remote/Contract)</p>`;
-                } else if (cmd === 'hire') {
-                    response += `<p class="text-yellow-400 font-bold">Awesome! Reach out directly via email at ohore4luv@yahoo.com or call 08078131524.</p>`;
-                } else if (cmd === 'clear') {
-                    output.innerHTML = `<p class="text-slate-400">$ terminal cleared.</p>`;
+                const val = input.value;
+                if (val.trim() !== '') {
+                    processCommand(val);
                     input.value = '';
-                    return;
-                } else if (cmd !== '') {
-                    response += `<p class="text-red-400">command not found: ${input.value}. Type 'help' for options.</p>`;
                 }
-
-                output.innerHTML += response;
-                input.value = '';
-                output.scrollTop = output.scrollHeight;
             }
         }
 
@@ -757,7 +871,7 @@
                 nav.style.background = 'rgba(1, 3, 8, 0.95)';
                 nav.style.boxShadow = '0 10px 30px -10px rgba(0,0,0,0.8)';
             } else {
-                nav.style.background = 'rgba(1, 3, 8, 0.88)';
+                nav.style.background = 'rgba(1, 3, 8, 0.82)';
                 nav.style.boxShadow = 'none';
             }
         });
