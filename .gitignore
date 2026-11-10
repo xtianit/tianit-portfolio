@@ -1,0 +1,8 @@
+# secrets and dependencies: never commit these
+.env
+.env.*
+!.env.example
+node_modules/
+.vercel/
+Thumbs.db
+Desktop.ini
