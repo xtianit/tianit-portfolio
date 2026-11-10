@@ -328,7 +328,13 @@ $('#ckf').onsubmit=async e=>{e.preventDefault();const f=e.target,m=$('#ckm'),v=O
  location.href=`mailto:${EMAIL}?subject=${encodeURIComponent('Order: '+PLANS[plan][0])}&body=${encodeURIComponent(`Package: ${PLANS[plan][0]} (${PLANS[plan][1][CUR]} ${CUR})\nName: ${v.name}\nEmail: ${v.email}\n\n${v.note||''}`)}`;m.textContent='Your email app should open with the order ready. I will reply with an invoice.'};
 // if(location.hash=='#thanks')$('#thanks').classList.remove('hidden');
  if (location.hash === '#thanks' || location.search.includes('reference=')) {
-  $('#thanks').classList.remove('hidden');
+  // Show the confirmation banner
+  const thanksBanner = $('#thanks');
+  if (thanksBanner) {
+    thanksBanner.classList.remove('hidden');
+  }
+  
+  // Clean up the URL bar cleanly after a brief moment so the banner renders properly
   if (window.history && window.history.replaceState) {
     const cleanUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
     window.history.replaceState({}, document.title, cleanUrl);
