@@ -326,7 +326,14 @@ $('#ckf').onsubmit=async e=>{e.preventDefault();const f=e.target,m=$('#ckm'),v=O
  if(API_BASE){$('#ckb').disabled=true;m.textContent='Preparing secure checkout...';try{const r=await fetch(API_BASE+'/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...v,plan,currency:CUR})});const d=await r.json();if(!r.ok||!d.url)throw 0;location.href=d.url;return}catch{m.className='text-sm text-red-400';m.textContent='Checkout is unavailable right now. Email '+EMAIL+' and I will send an invoice.';$('#ckb').disabled=false;return}}
  if(PAY_LINKS[CUR][plan]){window.open(PAY_LINKS[CUR][plan],'_blank','noopener');m.textContent='Payment page opened in a new tab.';return}
  location.href=`mailto:${EMAIL}?subject=${encodeURIComponent('Order: '+PLANS[plan][0])}&body=${encodeURIComponent(`Package: ${PLANS[plan][0]} (${PLANS[plan][1][CUR]} ${CUR})\nName: ${v.name}\nEmail: ${v.email}\n\n${v.note||''}`)}`;m.textContent='Your email app should open with the order ready. I will reply with an invoice.'};
-if(location.hash=='#thanks')$('#thanks').classList.remove('hidden');
+// if(location.hash=='#thanks')$('#thanks').classList.remove('hidden');
+ if (location.hash === '#thanks' || location.search.includes('reference=')) {
+  $('#thanks').classList.remove('hidden');
+  if (window.history && window.history.replaceState) {
+    const cleanUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+    window.history.replaceState({}, document.title, cleanUrl);
+  }
+}
 const pb=$('#pb'),tp=$('#tp'),topNav=$('nav');
 addEventListener('scroll',()=>{const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;pb.style.width=(h>0?y/h*100:0)+'%';topNav.classList.toggle('scrolled',y>40);tp.classList.toggle('hidden',y<600)},{passive:true});
 tp.onclick=()=>scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
