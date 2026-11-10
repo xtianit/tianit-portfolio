@@ -54,32 +54,66 @@ app.set('trust proxy', 1);
 app.use(cors({ origin: [SITE_URL, SITE_URL.replace('://www.', '://')] }));
 
 // 5. Paystack Webhook route: reads raw body to verify cryptographic signatures
+// app.post('/api/paystack-webhook', express.raw({ type: '*/*' }), async (req, res) => {
+//   const hash = crypto.createHmac('sha512', PAYSTACK_SECRET_KEY).update(req.body).digest('hex');
+//   if (hash !== req.headers['x-paystack-signature']) return res.sendStatus(401);
+  
+//   res.sendStatus(200); // Acknowledge receipt immediately so Paystack doesn't retry
+  
+//   const event = JSON.parse(req.body.toString());
+//   if (event.event !== 'charge.success') return;
+  
+//   const d = event.data;
+//   const m = d.metadata || {};
+//   const amount = `${(d.amount / 100).toFixed(2)} ${d.currency}`;
+  
+//   // Notify site owner
+//   await send(
+//     OWNER_EMAIL, 
+//     `Payment received: ${m.planName || 'order'} (${amount})`,
+//     `Package: ${m.planName}\nAmount: ${amount}\nCustomer: ${m.name} <${d.customer.email}>\nReference: ${d.reference}\nPaid at: ${d.paid_at}\n\nNotes:\n${m.note || '(none)'}`
+//   );
+  
+//   // Notify customer
+//   await send(
+//     d.customer.email, 
+//     'Payment received - next steps',
+//     `Hi ${m.name || ''},\n\nThank you. I received your payment (${amount}) for the ${m.planName}.\nI will email you shortly to confirm scope and next steps. Please keep reference ${d.reference} for your records.\n\nOhore Christian\n${SITE_URL}`
+//   );
+// });
+// 5. Paystack Webhook route: reads raw body to verify cryptographic signatures
 app.post('/api/paystack-webhook', express.raw({ type: '*/*' }), async (req, res) => {
   const hash = crypto.createHmac('sha512', PAYSTACK_SECRET_KEY).update(req.body).digest('hex');
   if (hash !== req.headers['x-paystack-signature']) return res.sendStatus(401);
   
-  res.sendStatus(200); // Acknowledge receipt immediately so Paystack doesn't retry
-  
-  const event = JSON.parse(req.body.toString());
-  if (event.event !== 'charge.success') return;
-  
-  const d = event.data;
-  const m = d.metadata || {};
-  const amount = `${(d.amount / 100).toFixed(2)} ${d.currency}`;
-  
-  // Notify site owner
-  await send(
-    OWNER_EMAIL, 
-    `Payment received: ${m.planName || 'order'} (${amount})`,
-    `Package: ${m.planName}\nAmount: ${amount}\nCustomer: ${m.name} <${d.customer.email}>\nReference: ${d.reference}\nPaid at: ${d.paid_at}\n\nNotes:\n${m.note || '(none)'}`
-  );
-  
-  // Notify customer
-  await send(
-    d.customer.email, 
-    'Payment received - next steps',
-    `Hi ${m.name || ''},\n\nThank you. I received your payment (${amount}) for the ${m.planName}.\nI will email you shortly to confirm scope and next steps. Please keep reference ${d.reference} for your records.\n\nOhore Christian\n${SITE_URL}`
-  );
+  try {
+    const event = JSON.parse(req.body.toString());
+    
+    if (event.event === 'charge.success') {
+      const d = event.data;
+      const m = d.metadata || {};
+      const amount = `${(d.amount / 100).toFixed(2)} ${d.currency}`;
+      
+      // Await emails BEFORE sending response so Vercel doesn't kill the function early
+      await send(
+        OWNER_EMAIL, 
+        `Payment received: ${m.planName || 'order'} (${amount})`,
+        `Package: ${m.planName}\nAmount: ${amount}\nCustomer: ${m.name} <${d.customer.email}>\nReference: ${d.reference}\nPaid at: ${d.paid_at}\n\nNotes:\n${m.note || '(none)'}`
+      );
+      
+      await send(
+        d.customer.email, 
+        'Payment received - next steps',
+        `Hi ${m.name || ''},\n\nThank you. I received your payment (${amount}) for the ${m.planName}.\nI will email you shortly to confirm scope and next steps. Please keep reference ${d.reference} for your records.\n\nOhore Christian\n${SITE_URL}`
+      );
+    }
+
+    // Acknowledge receipt successfully after processing is complete
+    return res.sendStatus(200);
+  } catch (err) {
+    console.error('Webhook processing error:', err.message);
+    return res.sendStatus(500);
+  }
 });
 
 // 6. Apply body parsing limits and rate limiting for checkout
